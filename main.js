@@ -90,6 +90,7 @@ $(document).ready(function() {
 			var sumaProductos = 0;
 			var sumaCantidad = 0;
 			var sumTotal=0;
+			var precioMedio =0;
 			
 			for(var i=0; i < data.length; i++) {
 				var row = data[i];
@@ -100,7 +101,10 @@ $(document).ready(function() {
 				}
 			}
 
-			var precioMedio = sumaProductos / sumaCantidad;
+			if(sumaProductos > 0) {
+				precioMedio = sumaProductos / sumaCantidad;
+			}
+			
 
 			// Añadir el sumatorio al pie de la tabla
 			$(this.api().column(2).footer()).html(sumaCantidad.toFixed(3));
