@@ -32,6 +32,16 @@ h4.cabecera {
 	max-width: 500px;
 }
 
+#usersTable_wrapper {
+	max-width: 500px;
+}
+
+#usersTable_wrapper {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	padding: 0px 5px;
+}
+
 .dataTables_filter  {
 	color:white !important;
 	padding: 4px 0px !important;
