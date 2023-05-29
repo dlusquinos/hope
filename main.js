@@ -189,7 +189,7 @@ $(document).ready(function() {
 			}
 
 			// Añadir el sumatorio al pie de la tabla
-			$(this.api().column(3).footer()).html(sumTotal.toFixed(3));
+			$(this.api().column(3).footer()).html(sumTotal);
 		 }
 		
     });
