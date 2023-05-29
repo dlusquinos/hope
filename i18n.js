@@ -1,4 +1,4 @@
-﻿
+
 var etiqueta = {
 	en: {
 		'page.title': "Hope Inc",
@@ -10,6 +10,12 @@ var etiqueta = {
 		'sales.quantity' : 'Quantity',
 		'sales.average' : 'Average price',
 		'sales.total' : 'Total',
+		
+		'users.title' :'Users',
+		'users.name' : 'Name',
+		'users.user' : 'User',
+		'users.since' : 'Since',
+		'users.scl' : 'SCL',
 		
 		
 		
@@ -27,6 +33,12 @@ var etiqueta = {
 		'sales.average' : 'Precio medio',
 		'sales.total' : 'Total',
 		
+		'users.title' :'Usuarios',
+		'users.name' : 'Nombre',
+		'users.user' : 'Usuario',
+		'users.since' : 'Desde',
+		'users.scl' : 'SCL',
+		
 		
 
 	},
@@ -42,6 +54,12 @@ var etiqueta = {
 	  'sales.quantity' : 'Quantity',
 	  'sales.average' : 'Average price',
 	  'sales.total' : 'Total',
+	  
+	  'users.title' :'Users',
+	  'users.name' : 'Name',
+	  'users.user' : 'User',
+	  'users.since' : 'Since',
+	  'users.scl' : 'SCL',
 
 
 	}
