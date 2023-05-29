@@ -13,8 +13,7 @@ $(document).ready(function() {
 
 			{ "data": "check",	
 			  "className": "text-center",
-			  "orderable" : false,
-			  'title': "",
+			  "orderable" : false,			  			  
 			  "render": function (data, type, row, meta) {
 				var checked = data ? "checked" : "";
 				return '<input type="checkbox" tabindex="-1" class="checkbox" ' + checked + '>';			
@@ -81,6 +80,26 @@ $(document).ready(function() {
 				tabla.draw();
 				
 			});
+		
+			
+			$('#salesTable thead .checkbox').off('change');
+			$('#salesTable thead .checkbox').on('change', function(event) {
+				event.stopPropagation();
+				
+				var checkValue = $(this).is(":checked");
+				var tr = $(this).closest('tr');
+				var tabla = $('#salesTable').DataTable();
+				var tablaData = tabla.data();
+				
+				for(var i=0; i < tablaData.length; i++) {
+					var datosFila = tablaData[i];
+					datosFila.check = checkValue;
+				}
+				tabla.clear().rows.add(tablaData).draw();
+				
+			});
+		
+		
 		
 			$('#salesTable').DataTable().columns.adjust();	
 		},
