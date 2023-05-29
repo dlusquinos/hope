@@ -1,6 +1,7 @@
 
 
 var salesTable;
+var usersTable;
 
 $(document).ready(function() {
 
@@ -134,9 +135,70 @@ $(document).ready(function() {
     });
 	
 	
-	var dataSales = construirDataSales();
-	salesTable.clear().rows.add(dataSales).draw();
+	usersTable = $('#usersTable').DataTable({
+        data: [],
+        "columns": [
 
+			{ "data": "name",			  		
+			  "title": utilidades.i18n('users.name'),
+			  "render": function (data, type, row, meta) {
+				return data;
+			  }
+			},
+			
+
+			{ "data": "user",			  
+			  "title": utilidades.i18n('users.user'),
+			  "render": function (data, type, row, meta) {
+					  return data;
+			  }
+			},
+			
+			{ "data": "since",
+			  "type": "date-eu",			
+			  "title": utilidades.i18n('users.since'),
+			  "render": function (data, type, row, meta) {
+				 return data;
+			  }
+			},
+			
+			{ "data": "scl",			  
+			  "title": utilidades.i18n('users.scl'),
+			  "render": function (data, type, row, meta) {
+				 return data;
+			  }
+			}
+
+        ],
+        "paging": false,
+        "info": false,
+		"filter": false,
+		"order": [[ 1, 'asc' ]],
+		
+		drawCallback: function(settings) {	
+			$('#usersTable').DataTable().columns.adjust();	
+		},
+		
+		footerCallback: function(row, data, start, end, display) {		
+
+			var sumTotal=0;
+			
+			for(var i=0; i < data.length; i++) {
+				var row = data[i];						
+				sumTotal+= row.scl;
+			}
+
+			// Añadir el sumatorio al pie de la tabla
+			$(this.api().column(3).footer()).html(sumTotal.toFixed(3));
+		 }
+		
+    });
+	
+	
+	var dataSales = construirDataSales();
+	salesTable.clear().rows.add(dataSales).draw();	
+	
+	usersTable.clear().rows.add(users_objects).draw();
 	
 });
 
