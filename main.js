@@ -213,8 +213,8 @@ function construirDataSales() {
 		var sumaCantidad = 0;
 		
 		for (var j = 0; j < compras.length; j++) {
-			sumaProductos += compras[i].quantity * compras[i].average;
-			sumaCantidad += compras[i].quantity;
+			sumaProductos += compras[j].quantity * compras[j].average;
+			sumaCantidad += compras[j].quantity;
 		}
 		
 		var precioMedio = sumaProductos / sumaCantidad;
