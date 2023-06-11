@@ -31,7 +31,7 @@ $(document).ready(function() {
 			},
 			
 
-			{ "data": "quantity",
+			{ "data": "caf.quantity",
 			  "orderable" : false,
 			  "className" : "price importe",
 			  "title": utilidades.i18n('sales.quantity'),
@@ -40,7 +40,7 @@ $(document).ready(function() {
 			  }
 			},
 			
-			{ "data": "average",
+			{ "data": "caf.average",
 			  "orderable" : false,
 			  "className" : "price importe",
 			  "title": utilidades.i18n('sales.average'),
@@ -49,7 +49,34 @@ $(document).ready(function() {
 			  }
 			},
 			
-			{ "data": "total",
+			{ "data": "caf.total",
+			  "orderable" : false,
+			  "className" : "price importe",
+			  "title": utilidades.i18n('sales.total'),
+			  "render": function (data, type, row, meta) {
+				 return data ? data.toFixed(3) : "--";
+			  }
+			},
+			
+			{ "data": "water.quantity",
+			  "orderable" : false,
+			  "className" : "price importe",
+			  "title": utilidades.i18n('sales.quantity'),
+			  "render": function (data, type, row, meta) {
+					  return data ? data.toFixed(3) : "--";
+			  }
+			},
+			
+			{ "data": "water.average",
+			  "orderable" : false,
+			  "className" : "price importe",
+			  "title": utilidades.i18n('sales.average'),
+			  "render": function (data, type, row, meta) {
+				 return data ? data.toFixed(3) : "--";
+			  }
+			},
+			
+			{ "data": "water.total",
 			  "orderable" : false,
 			  "className" : "price importe",
 			  "title": utilidades.i18n('sales.total'),
@@ -107,29 +134,17 @@ $(document).ready(function() {
 		
 		footerCallback: function(row, data, start, end, display) {		
 
-			var sumaProductos = 0;
-			var sumaCantidad = 0;
-			var sumTotal=0;
-			var precioMedio =0;
-			
-			for(var i=0; i < data.length; i++) {
-				var row = data[i];
-				if(row.check) {		
-					sumaProductos += row.quantity * row.average;
-					sumaCantidad += row.quantity;
-					sumTotal+= row.total;
-				}
-			}
-
-			if(sumaProductos > 0) {
-				precioMedio = sumaProductos / sumaCantidad;
-			}
-			
+			var totalesCaf = calcularTotales('caf', row, data);
+			var totalesWater = calcularTotales('water', row, data);
 
 			// Añadir el sumatorio al pie de la tabla
-			$(this.api().column(2).footer()).html(sumaCantidad.toFixed(3));
-			$(this.api().column(3).footer()).html(precioMedio.toFixed(3));
-			$(this.api().column(4).footer()).html(sumTotal.toFixed(3));
+			$(this.api().column(2).footer()).html(totalesCaf.sumaCantidad.toFixed(3));
+			$(this.api().column(3).footer()).html(totalesCaf.precioMedio.toFixed(3));
+			$(this.api().column(4).footer()).html(totalesCaf.sumTotal.toFixed(3));
+			
+			$(this.api().column(5).footer()).html(totalesWater.sumaCantidad.toFixed(3));
+			$(this.api().column(6).footer()).html(totalesWater.precioMedio.toFixed(3));
+			$(this.api().column(7).footer()).html(totalesWater.sumTotal.toFixed(3));						
 		 }
 		
     });
@@ -208,28 +223,78 @@ function construirDataSales() {
 	
 	for(var i=0; i < sales_objects.length; i++) {
 		var registro = sales_objects[i];
-		var compras = registro.sales;
-		var sumaProductos = 0;
-		var sumaCantidad = 0;
-		
-		for (var j = 0; j < compras.length; j++) {
-			sumaProductos += compras[j].quantity * compras[j].average;
-			sumaCantidad += compras[j].quantity;
-		}
-		
-		var precioMedio = sumaProductos / sumaCantidad;
+		var cafData = obtenerDatosProductoFila(registro, 'caf');
+		var waterData = obtenerDatosProductoFila(registro, 'water');
 		
 		var data = {
 			check: true,
 			week: registro.week,
-			quantity: sumaCantidad,
-			average: precioMedio,
-			total: sumaProductos,
-		};
+			caf: cafData,
+			water: waterData
+		}
 		
 		dataList.push(data);
 	}
 	
 	return dataList;
 }	
+
+
+function obtenerDatosProductoFila(registro, producto) {
+	
+		var compras = registro[producto];
+		var sumaProductos = 0;
+		var sumaCantidad = 0;
+		var precioMedio = 0;
+		
+		for (var j = 0; j < compras.length; j++) {
+			sumaProductos += compras[j].quantity * compras[j].average;
+			sumaCantidad += compras[j].quantity;
+		}
+		
+		if(sumaProductos > 0) {
+			precioMedio = sumaProductos / sumaCantidad;
+		}	
+		
+		var data = {
+			
+			quantity: sumaCantidad,
+			average: precioMedio,
+			total: sumaProductos,
+		};
+		
+		return data;
+}
+
+
+function calcularTotales(producto, row, data ) {
+	var sumaProductos = 0;
+	var sumaCantidad = 0;
+	var sumTotal=0;
+	var precioMedio =0;
+	
+	for(var i=0; i < data.length; i++) {
+		var row = data[i];
+		if(row.check) {		
+			sumaProductos += row[producto].quantity * row[producto].average;
+			sumaCantidad += row[producto].quantity;
+			sumTotal+= row[producto].total;
+		}
+	}
+
+	if(sumaProductos > 0) {
+		precioMedio = sumaProductos / sumaCantidad;
+	}
+	
+
+
+	var sumatorio = {
+		sumaCantidad: sumaCantidad,
+		precioMedio: precioMedio,
+		sumTotal: sumTotal
+	}
+	
+	return sumatorio;
+
+}
 
