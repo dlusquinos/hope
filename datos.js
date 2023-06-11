@@ -1,11 +1,21 @@
-
 var sales_objects = [
-	{week: '28/05/2023', sales: [{quantity: 500, average: 1.101}, {quantity: 1200, average: 1.063}, {quantity: 800, average: 1.085} ]},
-	{week: '04/06/2023', sales: [{quantity: 327, average: 1.02}, {quantity: 2130, average: 1.115} ]},
-	{week: '11/06/2023', sales: [{quantity: 720, average: 1.07}, {quantity: 200, average: 2.1}, {quantity: 8000, average: 1.044}, {quantity: 200, average: 1.111} ]},
-    	{week: '12/07/2023', sales: [{quantity: 5432, average: 1.24}, {quantity: 4000, average: 1.75}, {quantity: 7000, average: 1.034}, {quantity: 500, average: 1.233} ]},
-    	{week: '30/07/2023', sales: [{quantity: 500, average: 1.099}, {quantity: 750, average: 0.976} ]}
-    ]       
+	{
+	 week: '28/05/2023', 
+	 caf:  [{quantity: 500, average: 1.101}, {quantity: 1200, average: 1.063}, {quantity: 800, average: 1.085} ],
+	 water: [{quantity: 10000, average: 0.048}, {quantity: 2000, average: 0.056}, {quantity: 27634, average: 0.06} ]
+	},
+	{
+	 week: '04/06/2023', 
+	 caf:  [{quantity: 7500, average: 1.401}, {quantity: 4567, average: 1.093}, {quantity: 840, average: 1.11} ],
+	 water: []
+	},
+	{
+	 week: '11/06/2023', 
+	 caf:  [],
+	 water: [{quantity: 9700, average: 0.058}, {quantity: 2070, average: 0.056}, {quantity: 4634, average: 0.062}] 
+	}
+
+]
 
 
 var users_objects = [
