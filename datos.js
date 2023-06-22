@@ -1,3 +1,8 @@
+
+var MIN_CAF_PRODUCTION = 1000;
+var FARMER_PROFIT_PERCENT = 1;
+var FEE_FORMULA = '0.73 +(caf_average-1)*0.30'
+
 var sales_objects = [
 	{
 	 week: '28/05/2023', 
@@ -6,7 +11,7 @@ var sales_objects = [
 	},
 	{
 	 week: '04/06/2023', 
-	 caf:  [{quantity: 7500, average: 1.401}, {quantity: 4567, average: 1.093}, {quantity: 840, average: 1.11} ],
+	 caf:  [{quantity: 7500, average: 1.001}, {quantity: 4567, average: 1.093}, {quantity: 840, average: 1.11} ],
 	 water: []
 	},
 	{
@@ -19,6 +24,16 @@ var sales_objects = [
 
 
 var users_objects = [
-	{name: 'Diego L.', user: '@diegolusquinos', scl: 20, since: '04/06/2023'},
-	{name: 'Kike', user: '@KikeMercado', scl: 15, since: '04/06/2023'}
+	{name: 'Diego L.', user: '@diegolusquinos', since: '04/06/2023', lands: {scl: 20, ocl: 0, fcl: 0}},
+	{name: 'Kike', user: '@KikeMercado', since: '04/06/2023', lands: {scl: 15, ocl: 0, fcl: 0}}
 ]
+
+
+var lands_objects = [
+	{name: 'scl', caf: { production:3 , consumption: {water:1, seed:1}, boost_production: 11} },
+	{name: 'ocl', caf: { production:5 , consumption: {water:1, seed:1}, boost_production: 13} },
+	{name: 'fcl', caf: { production:60, consumption: {water:12, seed:12}, boost_production: 156} }
+]
+
+
+
