@@ -15,6 +15,7 @@ var etiqueta = {
 		'users.name' : 'Name',
 		'users.user' : 'User',
 		'users.since' : 'Since',
+		'users.until' : 'Until',
 		'users.scl' : 'SCL',
 		
 		
@@ -37,6 +38,7 @@ var etiqueta = {
 		'users.name' : 'Nombre',
 		'users.user' : 'Usuario',
 		'users.since' : 'Desde',
+		'users.until' : 'Hasta',
 		'users.scl' : 'SCL',
 		
 		
@@ -59,6 +61,7 @@ var etiqueta = {
 	  'users.name' : 'Name',
 	  'users.user' : 'User',
 	  'users.since' : 'Since',
+	  'users.until' : 'Until',
 	  'users.scl' : 'SCL',
 
 
